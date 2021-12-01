@@ -20,25 +20,5 @@ namespace AdventOfCode2021.DayOne
 
             return increases;
         }
-
-        public static IEnumerable<int> SumGroups(this IEnumerable<int> input, int groupSize)
-        {
-            var group = new Queue<int>(groupSize);
-            foreach (var entry in input)
-            {
-                if (group.Count == groupSize)
-                {
-                    yield return group.Sum();
-                }
-
-                group.Enqueue(entry);
-                if (group.Count > groupSize)
-                {
-                    group.Dequeue();
-                }
-            }
-
-            yield return group.Sum();
-        }
     }
 }

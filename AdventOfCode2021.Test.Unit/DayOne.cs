@@ -1,5 +1,6 @@
 using AdventOfCode2021.DayOne;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoreLinq;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace AdventOfCode2021.Test.Unit
         {
             var input = (await File.ReadAllLinesAsync("DayOneDemo.txt")).Select(x => int.Parse(x)).ToList();
             const int expected = 5;
-            var actual = input.SumGroups(3).GetNumberOfIncrements();
+            var actual = input.Window(3).Select(x => x.Sum()).GetNumberOfIncrements();
 
             Assert.AreEqual(expected, actual);
         }
@@ -35,7 +36,7 @@ namespace AdventOfCode2021.Test.Unit
         {
             var input = (await File.ReadAllLinesAsync("DayOneDemo.txt")).Select(x => int.Parse(x)).ToList();
             var expectedOutputs = new List<int> { 607, 618, 618, 617, 647, 716, 769, 792 };
-            var actualOutputs = input.SumGroups(3).ToList();
+            var actualOutputs = input.Window(3).Select(x => x.Sum()).ToList();
 
             Assert.AreEqual(expectedOutputs.Count, actualOutputs.Count);
             foreach (var (expectedOutput, actualOutput) in expectedOutputs.Zip(actualOutputs, (x, y) => (x, y)))
