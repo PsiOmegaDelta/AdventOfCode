@@ -16,7 +16,7 @@ namespace AdventOfCode2021.Test.Unit
         {
             var input = (await File.ReadAllLinesAsync("DayOneDemo.txt")).Select(x => int.Parse(x)).ToList();
             const int expected = 7;
-            var actual = input.GetNumberOfIncrements();
+            var actual = input.GetIncrementations();
 
             Assert.AreEqual(expected, actual);
         }
@@ -26,7 +26,7 @@ namespace AdventOfCode2021.Test.Unit
         {
             var input = (await File.ReadAllLinesAsync("DayOneDemo.txt")).Select(x => int.Parse(x)).ToList();
             const int expected = 5;
-            var actual = input.Window(3).Select(x => x.Sum()).GetNumberOfIncrements();
+            var actual = input.Window(3).Select(x => x.Sum()).GetIncrementations();
 
             Assert.AreEqual(expected, actual);
         }

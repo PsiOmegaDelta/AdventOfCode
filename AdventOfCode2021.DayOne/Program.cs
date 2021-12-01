@@ -11,8 +11,8 @@ namespace AdventOfCode2021.DayOne
         public static async Task Main()
         {
             var input = (await File.ReadAllLinesAsync("DayOneInput.txt")).Select(x => int.Parse(x)).ToList();
-            Console.WriteLine("Part One: " + input.GetNumberOfIncrements());
-            Console.WriteLine("Part Two: " + input.Window(3).Select(x => x.Sum()).GetNumberOfIncrements());
+            Console.WriteLine("Part One: " + input.GetIncrementations());
+            Console.WriteLine("Part Two: " + input.Window(3).Select(x => x.Sum()).GetIncrementations());
         }
     }
 }

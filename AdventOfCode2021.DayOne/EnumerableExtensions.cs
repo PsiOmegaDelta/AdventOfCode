@@ -4,21 +4,33 @@ namespace AdventOfCode2021.DayOne
 {
     public static class EnumerableExtensions
     {
-        public static int GetNumberOfIncrements(this IEnumerable<int> input)
+        public static int GetIncrementations<T>(this IEnumerable<T> input)
         {
-            int? previousNumber = null;
-            var increases = 0;
-            foreach (var entry in input)
-            {
-                if (entry > previousNumber)
-                {
-                    increases++;
-                }
+            return input.GetIncrementations(Comparer<T>.Default);
+        }
 
-                previousNumber = entry;
+        public static int GetIncrementations<T>(this IEnumerable<T> input, IComparer<T> comparer)
+        {
+            var incrementations = 0;
+            using var enumeratator = input.GetEnumerator();
+            T previousEntry = default;
+            if (enumeratator.MoveNext())
+            {
+                previousEntry = enumeratator.Current;
             }
 
-            return increases;
+            while (enumeratator.MoveNext())
+            {
+                var entry = enumeratator.Current;
+                if (comparer.Compare(entry, previousEntry) == 1)
+                {
+                    incrementations++;
+                }
+
+                previousEntry = entry;
+            }
+
+            return incrementations;
         }
     }
 }
