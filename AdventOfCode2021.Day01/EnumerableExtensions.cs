@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AdventOfCode2021.DayOne
+namespace AdventOfCode2021.Day01
 {
     public static class EnumerableExtensions
     {
@@ -13,7 +13,7 @@ namespace AdventOfCode2021.DayOne
         {
             var incrementations = 0;
             using var enumeratator = input.GetEnumerator();
-            T previousEntry = default;
+            T? previousEntry = default;
             if (enumeratator.MoveNext())
             {
                 previousEntry = enumeratator.Current;

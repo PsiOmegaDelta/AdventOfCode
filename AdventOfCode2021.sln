@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode2021.Test.Unit", "AdventOfCode2021.Test.Unit\AdventOfCode2021.Test.Unit.csproj", "{7373496A-1B6A-4EC7-B0D0-3925C1F76042}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode2021.DayOne", "AdventOfCode2021.DayOne\AdventOfCode2021.DayOne.csproj", "{DD706BFB-1C1A-464A-AAF6-8E26736C9514}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode2021.Day01", "AdventOfCode2021.Day01\AdventOfCode2021.Day01.csproj", "{DD706BFB-1C1A-464A-AAF6-8E26736C9514}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2021.Day02", "AdventOfCode2021.Day02\AdventOfCode2021.Day02.csproj", "{A006F3D4-0CD6-4150-AA43-9BA13E32DF8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode2021.Day02", "AdventOfCode2021.Day02\AdventOfCode2021.Day02.csproj", "{A006F3D4-0CD6-4150-AA43-9BA13E32DF8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

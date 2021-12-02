@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AdventOfCode2021.DayOne
+namespace AdventOfCode2021.Day01
 {
     public static class Program
     {
