@@ -8,14 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="morelinq" Version="3.3.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="DayOneDemo.txt">
+    <None Update="Day04Demo.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="DayOneInput.txt">
+    <None Update="Day04Input.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
