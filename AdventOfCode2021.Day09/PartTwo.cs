@@ -6,39 +6,25 @@ namespace AdventOfCode2021.Day09
     {
         public static long CalculateResult(int[][] matrix)
         {
-            return matrix.LowPointCoordinates().Select(x => GetBasinSize(matrix, x)).OrderByDescending(x => x).Take(3).Product();
+            return matrix.LowPointCoordinates().Select(x => matrix.GetBasinSize(x)).OrderByDescending(x => x).Take(3).Product();
         }
 
-        public static int GetBasinSize(int[][] matrix, (int, int) point)
+        public static int GetBasinSize(this int[][] matrix, (int, int) coordinate)
         {
-            var points = point.ToEnumerable();
-            return GetBasinSize(matrix, points.ToHashSet(), points);
+            return matrix.GetBasinSize(coordinate.ToEnumerable().ToHashSet(), matrix.GetGoodNeighbours(coordinate));
         }
 
         // Tail-recursive to avoid the stack limit
-        public static int GetBasinSize(int[][] matrix, ISet<(int, int)> visitedPoints, IEnumerable<(int, int)> pointsToVisit)
+        public static int GetBasinSize(this int[][] matrix, ISet<(int, int)> visitedCoordinates, IEnumerable<(int, int)> coordinatesToVisit)
         {
-            var goodNeighbours = new HashSet<(int, int)>();
-            foreach (var point in pointsToVisit.SelectMany(x => matrix.GetGoodNeighbours(x)))
-            {
-                if (visitedPoints.Add(point))
-                {
-                    goodNeighbours.Add(point);
-                }
-            }
-
-            if (goodNeighbours.Count == 0)
-            {
-                return visitedPoints.Count;
-            }
-
-            return GetBasinSize(matrix, visitedPoints, goodNeighbours);
+            var goodNeighbours = coordinatesToVisit.Where(x => visitedCoordinates.Add(x)).SelectMany(x => matrix.GetGoodNeighbours(x)).ToList();
+            return goodNeighbours.Count == 0 ? visitedCoordinates.Count : GetBasinSize(matrix, visitedCoordinates, goodNeighbours);
         }
 
         // Neighbours smaller than 9 are good neighbours
-        public static IEnumerable<(int, int)> GetGoodNeighbours(this int[][] matrix, (int X, int Y) point)
+        public static IEnumerable<(int, int)> GetGoodNeighbours(this int[][] matrix, (int X, int Y) coordinate)
         {
-            return matrix.GetNeighbours(point, true).Where(p => matrix[p.X][p.Y] < 9);
+            return matrix.GetNeighbours(coordinate, true).Where(c => matrix[c.X][c.Y] < 9);
         }
     }
 }
