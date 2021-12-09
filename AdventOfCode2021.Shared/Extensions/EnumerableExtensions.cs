@@ -20,5 +20,15 @@
                 forEach(item);
             }
         }
+
+        public static long Product(this IEnumerable<int> source)
+        {
+            return source.Aggregate(1L, (acc, val) => acc * val);
+        }
+
+        public static IEnumerable<T> ToEnumerable<T>(this T item)
+        {
+            yield return item;
+        }
     }
 }

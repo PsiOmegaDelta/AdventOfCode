@@ -1,6 +1,5 @@
 ﻿using AdventOfCode2021.Day08;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Threading.Tasks;
 
 namespace AdventOfCode2021.Test.Unit
 {
