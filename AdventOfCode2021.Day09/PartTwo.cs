@@ -12,14 +12,14 @@ namespace AdventOfCode2021.Day09
         public static int GetBasinSize(int[][] matrix, (int, int) point)
         {
             var points = point.ToEnumerable();
-            return GetBasinSize(matrix, points.ToHashSet(), points, 1);
+            return GetBasinSize(matrix, points.ToHashSet(), points);
         }
 
         // Tail-recursive to avoid the stack limit
-        public static int GetBasinSize(int[][] matrix, ISet<(int, int)> visitedPoints, IEnumerable<(int, int)> points, int size)
+        public static int GetBasinSize(int[][] matrix, ISet<(int, int)> visitedPoints, IEnumerable<(int, int)> pointsToVisit)
         {
             var goodNeighbours = new HashSet<(int, int)>();
-            foreach (var point in points.SelectMany(x => matrix.GetGoodNeighbours(x)))
+            foreach (var point in pointsToVisit.SelectMany(x => matrix.GetGoodNeighbours(x)))
             {
                 if (visitedPoints.Add(point))
                 {
@@ -29,11 +29,10 @@ namespace AdventOfCode2021.Day09
 
             if (goodNeighbours.Count == 0)
             {
-                return size;
+                return visitedPoints.Count;
             }
 
-            size += goodNeighbours.Count;
-            return GetBasinSize(matrix, visitedPoints, goodNeighbours, size);
+            return GetBasinSize(matrix, visitedPoints, goodNeighbours);
         }
 
         // Neighbours smaller than 9 are good neighbours
