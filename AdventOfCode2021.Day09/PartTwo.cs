@@ -18,7 +18,7 @@ namespace AdventOfCode2021.Day09
         public static int GetBasinSize(this int[][] matrix, ISet<(int, int)> visitedCoordinates, IEnumerable<(int, int)> coordinatesToVisit)
         {
             var goodNeighbours = coordinatesToVisit.Where(x => visitedCoordinates.Add(x)).SelectMany(x => matrix.GetGoodNeighbours(x)).ToList();
-            return goodNeighbours.Count == 0 ? visitedCoordinates.Count : GetBasinSize(matrix, visitedCoordinates, goodNeighbours);
+            return goodNeighbours.Count == 0 ? visitedCoordinates.Count : matrix.GetBasinSize(visitedCoordinates, goodNeighbours);
         }
 
         // Neighbours smaller than 9 are good neighbours
