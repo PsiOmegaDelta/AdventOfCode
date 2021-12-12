@@ -1,5 +1,5 @@
 ﻿using AdventOfCode2021.Day09;
-using AdventOfCode2021.Shared.InputParsers;
+using AdventOfCode2021.Shared;
 
 const string inputPath = "Day09Input.txt";
 Console.WriteLine("Part One: " + PartOne.CalculateResult(InputParsers.ToIntArrays(File.ReadLines(inputPath))));

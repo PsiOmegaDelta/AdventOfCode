@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2021.Shared.InputParsers
+﻿namespace AdventOfCode2021.Shared
 {
     public static class InputParsers
     {
