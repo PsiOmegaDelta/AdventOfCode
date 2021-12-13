@@ -7,6 +7,17 @@ namespace AdventOfCode2021.Shared
     {
         private readonly IDictionary<int, IDictionary<int, T?>> columnsByRow = new Dictionary<int, IDictionary<int, T?>>();
 
+        public SparsePlane()
+        {
+        }
+
+        public SparsePlane(T defaultWhenUnset)
+        {
+            DefaultWhenUnset = defaultWhenUnset;
+        }
+
+        public T? DefaultWhenUnset { get; set; } = default;
+
         public IEnumerable<(Coordinate Coordinate, T? Entry)> Entries => columnsByRow.SelectMany(x => x.Value.Select(y => (new Coordinate(x.Key, y.Key), y.Value)));
 
         private int? HighestX { get; set; }
@@ -26,7 +37,7 @@ namespace AdventOfCode2021.Shared
 
         public T? this[int x, int y]
         {
-            get => columnsByRow.TryGetValue(x, out var columns) && columns.TryGetValue(y, out var coordinateEntry) ? coordinateEntry : default;
+            get => columnsByRow.TryGetValue(x, out var columns) && columns.TryGetValue(y, out var coordinateEntry) ? coordinateEntry : DefaultWhenUnset;
 
             set => Add(x, y, value);
         }

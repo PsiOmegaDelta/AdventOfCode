@@ -1,0 +1,22 @@
+﻿using AdventOfCode2021.Day13;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
+using System.Linq;
+
+namespace AdventOfCode2021.Test.Unit
+{
+    [TestClass]
+    public class Day13Tests
+    {
+        private const string InputPath = "Day13Demo.txt";
+
+        [TestMethod]
+        public void PartOneDemoCalculationShallReturnExpectedResult()
+        {
+            const int expected = 17;
+            var actual = InputParser.ParseInput(InputPath).Calculate().First();
+
+            Assert.AreEqual(expected, actual);
+        }
+    }
+}
