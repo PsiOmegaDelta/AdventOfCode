@@ -11,7 +11,7 @@ namespace AdventOfCode2021.Test.Unit
         public async Task PartOneDemoCalculationShallReturnExpectedResult()
         {
             const int expected = 150;
-            var actual = await Program.CalculatePartOne("Day02Demo.txt");
+            var actual = await Program.CalculatePartOne("Day02Demo.txt").ConfigureAwait(false);
 
             Assert.AreEqual(expected, actual);
         }
@@ -20,7 +20,7 @@ namespace AdventOfCode2021.Test.Unit
         public async Task PartTwoDemoCalculationShallReturnExpectedResult()
         {
             const int expected = 900;
-            var actual = await Program.CalculatePartTwo("Day02Demo.txt");
+            var actual = await Program.CalculatePartTwo("Day02Demo.txt").ConfigureAwait(false);
 
             Assert.AreEqual(expected, actual);
         }

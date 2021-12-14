@@ -1,6 +1,5 @@
 ﻿using AdventOfCode2021.Day13;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
 using System.Linq;
 
 namespace AdventOfCode2021.Test.Unit
@@ -14,7 +13,7 @@ namespace AdventOfCode2021.Test.Unit
         public void PartOneDemoCalculationShallReturnExpectedResult()
         {
             const int expected = 17;
-            var actual = InputParser.ParseInput(InputPath).Calculate().First();
+            var actual = InputParser.ParseInput(InputPath).Calculate().First().Entries.Count();
 
             Assert.AreEqual(expected, actual);
         }

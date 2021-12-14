@@ -10,7 +10,7 @@ namespace AdventOfCode2021.Day01
     {
         public static async Task Main()
         {
-            var input = (await File.ReadAllLinesAsync("Day01Input.txt")).Select(x => int.Parse(x)).ToList();
+            var input = (await File.ReadAllLinesAsync("Day01Input.txt").ConfigureAwait(false)).Select(x => int.Parse(x)).ToList();
             Console.WriteLine("Part One: " + input.GetIncrementations());
             Console.WriteLine("Part Two: " + input.Window(3).Select(x => x.Sum()).GetIncrementations());
         }

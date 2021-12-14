@@ -5,7 +5,7 @@
         // The naive solution
         public static async Task<long> CalculateResult(string inputPath, int daysToSimulate)
         {
-            var lanternfish = (await File.ReadAllTextAsync(inputPath))
+            var lanternfish = (await File.ReadAllTextAsync(inputPath).ConfigureAwait(false))
                 .Split(',')
                 .Select(x => int.Parse(x))
                 .Select(x => new Lanternfish(x, false));

@@ -1,5 +1,5 @@
-﻿using AdventOfCode2021.Day11;
-using AdventOfCode2021.Shared;
+﻿using AdventOfCode.Shared;
+using AdventOfCode2021.Day11;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 

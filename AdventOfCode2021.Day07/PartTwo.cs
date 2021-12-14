@@ -4,7 +4,7 @@
     {
         public static async Task<int> CalculateResult(string inputPath)
         {
-            var crabsByPosition = await InputParser.ParseInput(inputPath);
+            var crabsByPosition = await InputParser.ParseInput(inputPath).ConfigureAwait(false);
             var minCost = int.MaxValue;
             for (var targetPosition = 0; targetPosition < crabsByPosition.Length; targetPosition++)
             {

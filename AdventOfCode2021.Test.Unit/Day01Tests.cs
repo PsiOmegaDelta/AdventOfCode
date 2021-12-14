@@ -14,7 +14,7 @@ namespace AdventOfCode2021.Test.Unit
         [TestMethod]
         public async Task PartOneShallReturnExpectedOutput()
         {
-            var input = (await File.ReadAllLinesAsync("Day01Demo.txt")).Select(x => int.Parse(x)).ToList();
+            var input = (await File.ReadAllLinesAsync("Day01Demo.txt").ConfigureAwait(false)).Select(x => int.Parse(x)).ToList();
             const int expected = 7;
             var actual = input.GetIncrementations();
 
@@ -24,7 +24,7 @@ namespace AdventOfCode2021.Test.Unit
         [TestMethod]
         public async Task PartTwoShallReturnExpectedOutput()
         {
-            var input = (await File.ReadAllLinesAsync("Day01Demo.txt")).Select(x => int.Parse(x)).ToList();
+            var input = (await File.ReadAllLinesAsync("Day01Demo.txt").ConfigureAwait(false)).Select(x => int.Parse(x)).ToList();
             const int expected = 5;
             var actual = input.Window(3).Select(x => x.Sum()).GetIncrementations();
 
@@ -34,7 +34,7 @@ namespace AdventOfCode2021.Test.Unit
         [TestMethod]
         public async Task SlidingWindowShallReturnExpectedOutputs()
         {
-            var input = (await File.ReadAllLinesAsync("Day01Demo.txt")).Select(x => int.Parse(x)).ToList();
+            var input = (await File.ReadAllLinesAsync("Day01Demo.txt").ConfigureAwait(false)).Select(x => int.Parse(x)).ToList();
             var expectedOutputs = new List<int> { 607, 618, 618, 617, 647, 716, 769, 792 };
             var actualOutputs = input.Window(3).Select(x => x.Sum()).ToList();
 

@@ -1,4 +1,4 @@
-﻿using AdventOfCode2021.Shared.Extensions;
+﻿using AdventOfCode.Shared.Extensions;
 using System.Collections.Immutable;
 
 namespace AdventOfCode2021.Day12

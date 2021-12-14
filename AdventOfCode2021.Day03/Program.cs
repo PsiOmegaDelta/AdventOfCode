@@ -11,7 +11,7 @@ namespace AdventOfCode2021.Day03
     {
         public static async Task<int> CalculatePartOne(string inputPath)
         {
-            var inputs = await AcquireInputs(inputPath);
+            var inputs = await AcquireInputs(inputPath).ConfigureAwait(false);
             var mostCommon = CalculateMostCommon(inputs);
 
             var (gamma, epsilon) = ConvertToDecimal(mostCommon);
@@ -20,7 +20,7 @@ namespace AdventOfCode2021.Day03
 
         public static async Task<int> CalculatePartTwo(string inputPath)
         {
-            var inputs = await AcquireInputs(inputPath);
+            var inputs = await AcquireInputs(inputPath).ConfigureAwait(false);
 
             var oxygen = FilterInput(inputs, true);
             var scrubber = FilterInput(inputs, false);
@@ -31,13 +31,13 @@ namespace AdventOfCode2021.Day03
         public static async Task Main()
         {
             const string inputPath = "Day03Input.txt";
-            Console.WriteLine("Part One: " + await CalculatePartOne(inputPath));
-            Console.WriteLine("Part Two: " + await CalculatePartTwo(inputPath));
+            Console.WriteLine("Part One: " + await CalculatePartOne(inputPath).ConfigureAwait(false));
+            Console.WriteLine("Part Two: " + await CalculatePartTwo(inputPath).ConfigureAwait(false));
         }
 
         private static async Task<IImmutableList<string>> AcquireInputs(string inputPath)
         {
-            return (await File.ReadAllLinesAsync(inputPath)).ToImmutableList();
+            return (await File.ReadAllLinesAsync(inputPath).ConfigureAwait(false)).ToImmutableList();
         }
 
         private static IReadOnlyList<int> CalculateMostCommon(IEnumerable<string> inputs)

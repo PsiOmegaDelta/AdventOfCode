@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2021.Shared.Extensions
+﻿namespace AdventOfCode.Shared.Extensions
 {
     public static class ArrayExtensions
     {

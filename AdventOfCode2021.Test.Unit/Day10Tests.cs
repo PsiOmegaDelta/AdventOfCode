@@ -1,5 +1,5 @@
-﻿using AdventOfCode2021.Day10;
-using AdventOfCode2021.Shared.Extensions;
+﻿using AdventOfCode.Shared.Extensions;
+using AdventOfCode2021.Day10;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.IO;

@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode2021.Test.Unit
+namespace AdventOfCode.Test.Unit.Shared
 {
     [TestClass]
     public class SharedTests

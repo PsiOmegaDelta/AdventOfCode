@@ -1,4 +1,4 @@
-﻿using AdventOfCode2021.Shared.Extensions;
+﻿using AdventOfCode.Shared.Extensions;
 
 namespace AdventOfCode2021.Day06
 {
@@ -8,7 +8,7 @@ namespace AdventOfCode2021.Day06
         public static async Task<long> CalculateResult(string inputPath, int daysToSimulate)
         {
             var lanternFishByTimer = new long[9];
-            var lanternfish = (await File.ReadAllTextAsync(inputPath))
+            var lanternfish = (await File.ReadAllTextAsync(inputPath).ConfigureAwait(false))
                 .Split(',')
                 .Select(x => int.Parse(x))
                 .ForEach(x => lanternFishByTimer[x]++);

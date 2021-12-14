@@ -1,7 +1,7 @@
-﻿using AdventOfCode2021.Shared.Extensions;
+﻿using AdventOfCode.Shared.Extensions;
 using System.Text;
 
-namespace AdventOfCode2021.Shared
+namespace AdventOfCode.Shared
 {
     public class SparsePlane<T>
     {

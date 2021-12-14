@@ -1,12 +1,10 @@
-﻿using AdventOfCode2021.Shared.Extensions;
-
-namespace AdventOfCode2021.Day07
+﻿namespace AdventOfCode2021.Day07
 {
     public static class PartOne
     {
         public static async Task<int> CalculateResult(string inputPath)
         {
-            var crabsByPosition = await InputParser.ParseInput(inputPath);
+            var crabsByPosition = await InputParser.ParseInput(inputPath).ConfigureAwait(false);
             var minCost = int.MaxValue;
             for (var targetPosition = 0; targetPosition < crabsByPosition.Length; targetPosition++)
             {

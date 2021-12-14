@@ -10,20 +10,20 @@ namespace AdventOfCode2021.Day02
     {
         public static async Task<int> CalculatePartOne(string inputPath)
         {
-            var input = (await PrepareInput(inputPath)).Select(x => new SimpleSubmarineVector(x[0], int.Parse(x[1])));
+            var input = (await PrepareInput(inputPath).ConfigureAwait(false)).Select(x => new SimpleSubmarineVector(x[0], int.Parse(x[1])));
             return Calculate(input);
         }
 
         public static async Task<int> CalculatePartTwo(string inputPath)
         {
-            var input = (await PrepareInput(inputPath)).Select(x => new ComplexSubmarineVector(x[0], int.Parse(x[1])));
+            var input = (await PrepareInput(inputPath).ConfigureAwait(false)).Select(x => new ComplexSubmarineVector(x[0], int.Parse(x[1])));
             return Calculate(input);
         }
 
         public static async Task Main()
         {
             const string inputPath = "Day02Input.txt";
-            Console.WriteLine("Part One: " + await CalculatePartOne(inputPath));
+            Console.WriteLine("Part One: " + await CalculatePartOne(inputPath).ConfigureAwait(false));
             Console.WriteLine("Part Two: " + CalculatePartTwo(inputPath));
         }
 
@@ -35,7 +35,7 @@ namespace AdventOfCode2021.Day02
 
         private static async Task<IEnumerable<string[]>> PrepareInput(string inputPath)
         {
-            return (await File.ReadAllLinesAsync(inputPath)).Select(x => x.Split(' '));
+            return (await File.ReadAllLinesAsync(inputPath).ConfigureAwait(false)).Select(x => x.Split(' '));
         }
     }
 }

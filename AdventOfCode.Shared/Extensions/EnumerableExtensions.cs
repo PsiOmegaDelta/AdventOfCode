@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2021.Shared.Extensions
+﻿using AdventOfCode.Shared.Extensions;
+
+namespace AdventOfCode.Shared.Extensions
 {
     public static class EnumerableExtensions
     {

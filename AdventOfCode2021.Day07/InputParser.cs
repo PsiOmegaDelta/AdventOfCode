@@ -1,4 +1,4 @@
-﻿using AdventOfCode2021.Shared.Extensions;
+﻿using AdventOfCode.Shared.Extensions;
 
 namespace AdventOfCode2021.Day07
 {
@@ -6,7 +6,7 @@ namespace AdventOfCode2021.Day07
     {
         public static async Task<int[]> ParseInput(string inputPath)
         {
-            var splitInput = (await File.ReadAllTextAsync(inputPath)).Split(',').Select(x => int.Parse(x)).ToArray();
+            var splitInput = (await File.ReadAllTextAsync(inputPath).ConfigureAwait(false)).Split(',').Select(x => int.Parse(x)).ToArray();
             var crabsByPosition = new int[splitInput.Max() + 1];
             splitInput.ForEach(x => crabsByPosition[x]++);
             return crabsByPosition;

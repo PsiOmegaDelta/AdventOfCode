@@ -1,4 +1,4 @@
-﻿using AdventOfCode2021.Shared;
+﻿using AdventOfCode.Shared;
 
 namespace AdventOfCode2021.Day05
 {

@@ -1,6 +1,4 @@
-﻿using AdventOfCode2021.Shared.Extensions;
-
-namespace AdventOfCode2021.Day11
+﻿namespace AdventOfCode2021.Day11
 {
     public static class PartOne
     {
