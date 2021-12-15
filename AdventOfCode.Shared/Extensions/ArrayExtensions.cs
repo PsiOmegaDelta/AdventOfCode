@@ -34,6 +34,52 @@
             return copy;
         }
 
+        public static IReadOnlyList<(int X, int Y)> DijkstraSearch(this int[][] maze, (int X, int Y) start, (int X, int Y) end)
+        {
+            return maze.DijkstraSearch(start, end, x => x);
+        }
+
+        public static IReadOnlyList<(int X, int Y)> DijkstraSearch<T>(this T[][] maze, (int X, int Y) start, (int X, int Y) end, Func<T, long> getCost)
+            where T : notnull
+        {
+            ISet<(int, int)> visited = new HashSet<(int, int)>();
+            Dictionary<(int, int), (int, int)> parentMap = new();
+            PriorityQueue<(int, int), long> priorityQueue = new();
+            var costs = new Dictionary<(int, int), long> { { start, 0 } };
+
+            priorityQueue.Enqueue(start, getCost(maze[start.X][start.Y]));
+
+            (int, int) current;
+            while (priorityQueue.Count > 0)
+            {
+                current = priorityQueue.Dequeue();
+                if (!visited.Contains(current))
+                {
+                    visited.Add(current);
+
+                    if (current.Equals(end))
+                    {
+                        break;
+                    }
+
+                    foreach (var neighbour in maze.GetNeighbours(current, true))
+                    {
+                        long newCost = costs.GetOrDefault(current, _ => int.MaxValue) + getCost(maze[neighbour.X][neighbour.Y]);
+                        long neighborCost = costs.GetOrDefault(neighbour, _ => int.MaxValue);
+
+                        if (newCost < neighborCost)
+                        {
+                            costs[neighbour] = newCost;
+                            parentMap.Add(neighbour, current);
+                            priorityQueue.Enqueue(neighbour, newCost);
+                        }
+                    }
+                }
+            }
+
+            return ReconstructPath(parentMap, start, end);
+        }
+
         public static IEnumerable<(int X, int Y)> GetNeighbours<T>(this T[][] array, (int X, int Y) point, bool cardinalsOnly)
         {
             return array.GetNeighbours(point.X, point.Y, cardinalsOnly);
@@ -56,6 +102,24 @@
                     yield return (newX, newY);
                 }
             }
+        }
+
+        private static IReadOnlyList<T> ReconstructPath<T>(Dictionary<T, T> parentMap, T start, T end)
+            where T : notnull
+        {
+            var path = new List<T>();
+            T current = end;
+
+            while (!Equals(current, start))
+            {
+                path.Add(current);
+                current = parentMap[current];
+            }
+
+            path.Add(start);
+
+            path.Reverse();
+            return path;
         }
     }
 }
