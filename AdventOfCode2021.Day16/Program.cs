@@ -1,5 +1,4 @@
-﻿using AdventOfCode.Shared;
-using AdventOfCode2021.Day16;
+﻿using AdventOfCode2021.Day16;
 
 const string inputPath = "Day16Input.txt";
 Console.WriteLine("2021 - Day 16");

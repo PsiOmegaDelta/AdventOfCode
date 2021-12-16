@@ -1,8 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using AdventOfCode2015.Day08;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace AdventOfCode2015.Test.Unit
 {

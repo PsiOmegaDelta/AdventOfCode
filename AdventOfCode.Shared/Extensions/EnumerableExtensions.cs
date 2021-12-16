@@ -39,6 +39,11 @@ namespace AdventOfCode.Shared.Extensions
             }
         }
 
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> source, T item)
+        {
+            return source.Except(item.ToEnumerable());
+        }
+
         public static IReadOnlyList<TOut> ForEach<TIn, TOut>(this IEnumerable<TIn> source, Func<TIn, TOut> forEach)
         {
             var eachResult = new List<TOut>();

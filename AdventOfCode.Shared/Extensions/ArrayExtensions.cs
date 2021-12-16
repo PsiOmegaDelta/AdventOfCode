@@ -77,7 +77,7 @@
                 }
             }
 
-            return ReconstructPath(parentMap, start, end);
+            return parentMap.ReconstructPath(start, end);
         }
 
         public static IEnumerable<(int X, int Y)> GetNeighbours<T>(this T[][] array, (int X, int Y) point, bool cardinalsOnly)
@@ -102,24 +102,6 @@
                     yield return (newX, newY);
                 }
             }
-        }
-
-        private static IReadOnlyList<T> ReconstructPath<T>(Dictionary<T, T> parentMap, T start, T end)
-            where T : notnull
-        {
-            var path = new List<T>();
-            T current = end;
-
-            while (!Equals(current, start))
-            {
-                path.Add(current);
-                current = parentMap[current];
-            }
-
-            path.Add(start);
-
-            path.Reverse();
-            return path;
         }
     }
 }
