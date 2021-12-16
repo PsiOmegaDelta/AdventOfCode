@@ -1,4 +1,5 @@
 ﻿using AdventOfCode.Shared.Extensions;
+using System.Numerics;
 
 namespace AdventOfCode.Shared.Extensions
 {
@@ -59,7 +60,32 @@ namespace AdventOfCode.Shared.Extensions
 
         public static long Product(this IEnumerable<int> source)
         {
-            return source.Aggregate(1L, (acc, val) => acc * val);
+            return source.Product(x => x);
+        }
+
+        public static long Product<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
+        {
+            return source.Aggregate(1L, (acc, val) => acc * selector(val));
+        }
+
+        public static BigInteger Product<TSource>(this IEnumerable<TSource> source, Func<TSource, BigInteger> selector)
+        {
+            return source.Select(selector).Product();
+        }
+
+        public static BigInteger Product(this IEnumerable<BigInteger> source)
+        {
+            return source.Aggregate(BigInteger.One, (acc, val) => BigInteger.Multiply(acc, val));
+        }
+
+        public static BigInteger Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, BigInteger> selector)
+        {
+            return source.Select(selector).Sum();
+        }
+
+        public static BigInteger Sum(this IEnumerable<BigInteger> source)
+        {
+            return source.Aggregate(BigInteger.Zero, (acc, val) => BigInteger.Add(acc, val));
         }
 
         public static IEnumerable<T> ToEnumerable<T>(this T item)
