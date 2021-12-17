@@ -4,7 +4,7 @@ namespace AdventOfCode2021.Day09
 {
     public static class PartTwo
     {
-        public static long CalculateResult(int[][] matrix)
+        public static long CalculatePartTwo(int[][] matrix)
         {
             return matrix.LowPointCoordinates().Select(x => matrix.GetBasinSize(x)).OrderByDescending(x => x).Take(3).Product();
         }

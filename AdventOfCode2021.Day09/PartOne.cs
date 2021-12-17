@@ -2,7 +2,7 @@
 {
     public static class PartOne
     {
-        public static int CalculateResult(int[][] matrix)
+        public static int CalculatePartOne(int[][] matrix)
         {
             return matrix.LowPointValues().Select(x => x + 1).Sum();
         }
