@@ -83,6 +83,11 @@ namespace AdventOfCode.Shared.Extensions
             return source.Aggregate(BigInteger.One, (acc, val) => BigInteger.Multiply(acc, val));
         }
 
+        public static IEnumerable<(T, int)> SelectIndex<T>(this IEnumerable<T> source)
+        {
+            return source.Select((x, i) => (x, i));
+        }
+
         public static BigInteger Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, BigInteger> selector)
         {
             return source.Select(selector).Sum();
@@ -96,6 +101,11 @@ namespace AdventOfCode.Shared.Extensions
         public static IEnumerable<T> ToEnumerable<T>(this T item)
         {
             yield return item;
+        }
+
+        public static Sequence<T> ToSequence<T>(this IEnumerable<T> source)
+        {
+            return new Sequence<T>(source);
         }
     }
 }
