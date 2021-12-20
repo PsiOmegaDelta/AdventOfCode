@@ -4,7 +4,7 @@ namespace AdventOfCode2021.Day05
 {
     public static class LineExtensions
     {
-        public static void PopulatePlane<T>(this IEnumerable<Line> lines, SparsePlane<T> plane, Func<T?, T?> populate)
+        public static void PopulatePlane<T>(this IEnumerable<Line2D> lines, SparsePlane<T> plane, Func<T?, T?> populate)
         {
             foreach (var line in lines)
             {
@@ -12,7 +12,7 @@ namespace AdventOfCode2021.Day05
             }
         }
 
-        public static void PopulatePlane<T>(this Line line, SparsePlane<T> plane, Func<T?, T?> populate)
+        public static void PopulatePlane<T>(this Line2D line, SparsePlane<T> plane, Func<T?, T?> populate)
         {
             int x, y;
             int adjustX(int inputX) => line.IsHorizontal ? inputX : (line.Start.X < line.End.X) ? inputX + 1 : inputX - 1;
@@ -22,7 +22,7 @@ namespace AdventOfCode2021.Day05
                 plane[x, y] = populate(plane[x, y]);
             }
 
-            static bool Continue(Line line, int x, int y)
+            static bool Continue(Line2D line, int x, int y)
             {
                 if (line.Start.X < line.End.X && x > line.End.X)
                 {

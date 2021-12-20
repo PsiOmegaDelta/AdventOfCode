@@ -9,26 +9,29 @@ namespace AdventOfCode.Shared
 
         public SparsePlane()
         {
+            DefaultWhenUnset = default;
         }
 
-        public SparsePlane(T defaultWhenUnset)
+        public SparsePlane(T? defaultWhenUnset)
         {
             DefaultWhenUnset = defaultWhenUnset;
         }
 
-        public T? DefaultWhenUnset { get; set; } = default;
+        public T? DefaultWhenUnset { get; set; }
 
-        public IEnumerable<(Coordinate Coordinate, T? Entry)> Entries => columnsByRow.SelectMany(x => x.Value.Select(y => (new Coordinate(x.Key, y.Key), y.Value)));
+        public IEnumerable<(Coordinate2D Coordinate, T? Entry)> Entries => YieldAllValues();
 
-        private int? HighestX { get; set; }
+        public IEnumerable<(Coordinate2D Coordinate, T? Entry)> ExplicitEntries => columnsByRow.SelectMany(x => x.Value.Select(y => (new Coordinate2D(x.Key, y.Key), y.Value)));
 
-        private int? HighestY { get; set; }
+        public int? MaxX { get; private set; }
 
-        private int? LowestX { get; set; }
+        public int? MaxY { get; private set; }
 
-        private int? LowestY { get; set; }
+        public int? MinX { get; private set; }
 
-        public T? this[Coordinate key]
+        public int? MinY { get; private set; }
+
+        public T? this[Coordinate2D key]
         {
             get => this[key.X, key.Y];
 
@@ -44,15 +47,15 @@ namespace AdventOfCode.Shared
 
         public override string ToString()
         {
-            if (HighestX == null)
+            if (MaxX == null)
             {
                 return string.Empty;
             }
 
             var stringBuilder = new StringBuilder();
-            for (int y = LowestY!.Value; y <= HighestY; y++)
+            for (int y = MinY!.Value; y <= MaxY; y++)
             {
-                for (int x = LowestX!.Value; x <= HighestX; x++)
+                for (int x = MinX!.Value; x <= MaxX; x++)
                 {
                     T? entry = this[x, y];
                     stringBuilder.Append(entry?.ToString() ?? ".");
@@ -66,11 +69,27 @@ namespace AdventOfCode.Shared
 
         private T? Add(int x, int y, T? value)
         {
-            HighestX = Math.Max(x, HighestX ?? x);
-            HighestY = Math.Max(y, HighestY ?? y);
-            LowestX = Math.Min(x, LowestX ?? x);
-            LowestY = Math.Min(y, LowestY ?? y);
+            MaxX = Math.Max(x, MaxX ?? x);
+            MaxY = Math.Max(y, MaxY ?? y);
+            MinX = Math.Min(x, MinX ?? x);
+            MinY = Math.Min(y, MinY ?? y);
             return columnsByRow.GetOrAdd(x, _ => new Dictionary<int, T?>())[y] = value;
+        }
+
+        private IEnumerable<(Coordinate2D Coordinate, T? Entry)> YieldAllValues()
+        {
+            if (!MaxX.HasValue)
+            {
+                yield break;
+            }
+
+            for (int x = MinX!.Value; x <= MaxX; x++)
+            {
+                for (int y = MinY!.Value; y <= MaxY; y++)
+                {
+                    yield return (new Coordinate2D(x, y), this[x, y]);
+                }
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ namespace AdventOfCode2021.Day05
         {
             var sparsePlane = new SparsePlane<int>();
             InputParser.ParseInput(inputPath).PopulatePlane(sparsePlane, x => x + 1);
-            return sparsePlane.Entries.Count(x => x.Entry >= 2);
+            return sparsePlane.ExplicitEntries.Count(x => x.Entry >= 2);
         }
     }
 }

@@ -4,9 +4,9 @@ namespace AdventOfCode2015.Day03
 {
     public static class PartTwo
     {
-        public static long CalculatePartTwo(this IEnumerable<Func<Coordinate, Coordinate>> inputs)
+        public static long CalculatePartTwo(this IEnumerable<Func<Coordinate2D, Coordinate2D>> inputs)
         {
-            var santaCoordinate = new Coordinate(0, 0);
+            var santaCoordinate = new Coordinate2D(0, 0);
             var robotCoordinate = santaCoordinate;
             var moveSanta = true;
             var sparsePlane = new SparsePlane<int>();
@@ -14,7 +14,7 @@ namespace AdventOfCode2015.Day03
 
             foreach (var input in inputs)
             {
-                Coordinate coordinate;
+                Coordinate2D coordinate;
                 if (moveSanta)
                 {
                     coordinate = santaCoordinate = input(santaCoordinate);
@@ -29,7 +29,7 @@ namespace AdventOfCode2015.Day03
                 moveSanta = !moveSanta;
             }
 
-            return sparsePlane.Entries.LongCount();
+            return sparsePlane.ExplicitEntries.LongCount();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace AdventOfCode2021.Day17
 {
     public static class PartOne
     {
-        public static int CalculatePartOne(this (Coordinate Start, Coordinate End) targetArea)
+        public static int CalculatePartOne(this (Coordinate2D Start, Coordinate2D End) targetArea)
         {
             int? height;
             var overshotXInOneStep = false;
@@ -24,9 +24,9 @@ namespace AdventOfCode2021.Day17
             return highestY;
         }
 
-        public static (int? height, bool overshotXInOne) ConductSteps(this (Coordinate Start, Coordinate End) targetArea, int xVelocity, int yVelocity)
+        public static (int? height, bool overshotXInOne) ConductSteps(this (Coordinate2D Start, Coordinate2D End) targetArea, int xVelocity, int yVelocity)
         {
-            var position = new Coordinate(0, 0);
+            var position = new Coordinate2D(0, 0);
             var steps = 0;
             var highestY = 0;
             do

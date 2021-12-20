@@ -4,9 +4,9 @@ namespace AdventOfCode2015.Day03
 {
     public static class PartOne
     {
-        public static long CalculatePartOne(this IEnumerable<Func<Coordinate, Coordinate>> inputs)
+        public static long CalculatePartOne(this IEnumerable<Func<Coordinate2D, Coordinate2D>> inputs)
         {
-            var currentCoordinate = new Coordinate(0, 0);
+            var currentCoordinate = new Coordinate2D(0, 0);
             var sparsePlane = new SparsePlane<int>();
             sparsePlane[currentCoordinate] = 1;
 
@@ -16,7 +16,7 @@ namespace AdventOfCode2015.Day03
                 sparsePlane[currentCoordinate]++;
             }
 
-            return sparsePlane.Entries.LongCount();
+            return sparsePlane.ExplicitEntries.LongCount();
         }
     }
 }

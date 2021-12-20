@@ -12,7 +12,7 @@ namespace AdventOfCode2021.Day13
 
                 if (axis == 'x')
                 {
-                    foreach (var entry in input.Matrix.Entries)
+                    foreach (var entry in input.Matrix.ExplicitEntries)
                     {
                         if (entry.Coordinate.X < line)
                         {
@@ -26,7 +26,7 @@ namespace AdventOfCode2021.Day13
                 }
                 else
                 {
-                    foreach (var entry in input.Matrix.Entries)
+                    foreach (var entry in input.Matrix.ExplicitEntries)
                     {
                         if (entry.Coordinate.Y < line)
                         {

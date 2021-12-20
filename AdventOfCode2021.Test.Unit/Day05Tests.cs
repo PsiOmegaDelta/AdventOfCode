@@ -19,7 +19,7 @@ namespace AdventOfCode2021.Test.Unit
             var lines = InputParser.ParseInput(input).ToList();
             lines.PopulatePlane(plane, x => x + 1);
 
-            var planeEntries = plane.Entries.ToList();
+            var planeEntries = plane.ExplicitEntries.ToList();
 
             Assert.AreEqual(6, planeEntries.Count);
 

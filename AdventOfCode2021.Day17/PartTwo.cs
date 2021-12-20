@@ -4,7 +4,7 @@ namespace AdventOfCode2021.Day17
 {
     public static class PartTwo
     {
-        public static long CalculatePartTwo(this (Coordinate Start, Coordinate End) targetArea)
+        public static long CalculatePartTwo(this (Coordinate2D Start, Coordinate2D End) targetArea)
         {
             int? height;
             var overshotXInOneStep = false;
