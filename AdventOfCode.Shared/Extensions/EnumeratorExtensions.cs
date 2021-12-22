@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2021.Day16
+﻿namespace AdventOfCode.Shared.Extensions
 {
     public static class EnumeratorExtensions
     {

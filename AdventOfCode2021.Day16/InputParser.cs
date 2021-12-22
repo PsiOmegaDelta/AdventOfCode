@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using AdventOfCode.Shared.Extensions;
+using System.Text;
 
 namespace AdventOfCode2021.Day16
 {
