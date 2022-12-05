@@ -2,7 +2,7 @@
 
 namespace AdventOfCode.Shared
 {
-    public class SparseCube<T>
+    public sealed class SparseCube<T>
     {
         private readonly IDictionary<int, IDictionary<int, IDictionary<int, T>>> yByX = new Dictionary<int, IDictionary<int, IDictionary<int, T>>>();
 
@@ -15,7 +15,7 @@ namespace AdventOfCode.Shared
             DefaultWhenUnset = defaultWhenUnset;
         }
 
-        public T? DefaultWhenUnset { get; set; } = default;
+        public T? DefaultWhenUnset { get; set; }
 
         public IEnumerable<(Coordinate3D Coordinate, T Entry)> Entries => ReturnCoordinates();
 
@@ -30,10 +30,10 @@ namespace AdventOfCode.Shared
         {
             get => yByX.TryGetValue(x, out var zBYY) && zBYY.TryGetValue(y, out var coordinateEntries) && coordinateEntries.TryGetValue(z, out var coordinateEntry) ? coordinateEntry : DefaultWhenUnset;
 
-            set => Add(x, y, z, value);
+            set => Add(x, y, z, value!);
         }
 
-        private T? Add(int x, int y, int z, T? value)
+        public T Add(int x, int y, int z, T value)
         {
             if (value == null)
             {
@@ -41,6 +41,16 @@ namespace AdventOfCode.Shared
             }
 
             return yByX.GetOrAdd(x, _ => new Dictionary<int, IDictionary<int, T>>()).GetOrAdd(y, _ => new Dictionary<int, T>())[z] = value;
+        }
+
+        public bool Remove(int x, int y, int z)
+        {
+            if (yByX.TryGetValue(x, out var zByY) && zByY.TryGetValue(y, out var entryByZ))
+            {
+                return entryByZ.Remove(z);
+            }
+
+            return false;
         }
 
         private IEnumerable<(Coordinate3D, T)> ReturnCoordinates()

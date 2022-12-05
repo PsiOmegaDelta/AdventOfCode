@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode.Shared
 {
-    public class Node
+    public sealed class Node
     {
     }
 }

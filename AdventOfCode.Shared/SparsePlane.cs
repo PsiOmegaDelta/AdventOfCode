@@ -3,7 +3,7 @@ using System.Text;
 
 namespace AdventOfCode.Shared
 {
-    public class SparsePlane<T>
+    public sealed class SparsePlane<T>
     {
         private readonly IDictionary<int, IDictionary<int, T?>> columnsByRow = new Dictionary<int, IDictionary<int, T?>>();
 

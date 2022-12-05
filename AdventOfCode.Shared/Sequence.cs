@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 
 namespace AdventOfCode.Shared
 {
-    public class Sequence<T> : IReadOnlyList<T>
+    public sealed class Sequence<T> : IReadOnlyList<T>
     {
         private readonly IEnumerable<T> input;
         private IImmutableList<T>? enumeration;
