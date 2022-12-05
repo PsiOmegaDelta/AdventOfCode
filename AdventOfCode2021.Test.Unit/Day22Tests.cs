@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 
-namespace AdventOfCode2022.Test.Unit
+namespace AdventOfCode2021.Test.Unit
 {
     [TestClass]
     public class Day22Tests
