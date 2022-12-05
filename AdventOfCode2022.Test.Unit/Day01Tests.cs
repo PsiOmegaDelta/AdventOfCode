@@ -6,12 +6,14 @@ namespace AdventOfCode2022.Test.Unit
     [TestClass]
     public class Day01Tests
     {
+        private const string TestInputPath = "Day01Demo.txt";
+
         [TestMethod]
         public void PartOneShallReturnExpectedOutput()
         {
             const int expected = 24000;
 
-            var input = File.ReadLines("Day01Demo.txt").GroupByNewlineSeparation(int.Parse);
+            var input = File.ReadLines(TestInputPath).GroupByNewlineSeparation(int.Parse);
             var actual = input.CalculatePartOne();
 
             Assert.AreEqual(expected, actual);
@@ -22,7 +24,7 @@ namespace AdventOfCode2022.Test.Unit
         {
             const int expected = 45000;
 
-            var input = File.ReadLines("Day01Demo.txt").GroupByNewlineSeparation(int.Parse);
+            var input = File.ReadLines(TestInputPath).GroupByNewlineSeparation(int.Parse);
             var actual = input.CalculatePartTwo();
 
             Assert.AreEqual(expected, actual);

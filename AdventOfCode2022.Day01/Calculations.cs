@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace AdventOfCode2022.Day01
+﻿namespace AdventOfCode2022.Day01
 {
     public static class Calculations
     {

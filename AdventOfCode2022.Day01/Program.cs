@@ -1,5 +1,4 @@
 ﻿using AdventOfCode.Shared;
-using AdventOfCode.Shared.Enumerations;
 using AdventOfCode2022.Day01;
 
 const string inputPath = "Day01Input.txt";

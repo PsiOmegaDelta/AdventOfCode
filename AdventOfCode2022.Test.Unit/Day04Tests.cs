@@ -1,4 +1,3 @@
-using AdventOfCode.Shared;
 using AdventOfCode2022.Day04;
 
 namespace AdventOfCode2022.Test.Unit
@@ -6,12 +5,14 @@ namespace AdventOfCode2022.Test.Unit
     [TestClass]
     public class Day04Tests
     {
+        private const string TestInputPath = "Day04Demo.txt";
+
         [TestMethod]
         public void PartOneShallReturnExpectedOutput()
         {
             const int expected = 2;
 
-            var actual = File.ReadLines("Day04Demo.txt").CalculatePartOne();
+            var actual = File.ReadLines(TestInputPath).CalculatePartOne();
 
             Assert.AreEqual(expected, actual);
         }
@@ -21,7 +22,7 @@ namespace AdventOfCode2022.Test.Unit
         {
             const int expected = 4;
 
-            var actual = File.ReadLines("Day04Demo.txt").CalculatePartTwo();
+            var actual = File.ReadLines(TestInputPath).CalculatePartTwo();
 
             Assert.AreEqual(expected, actual);
         }
