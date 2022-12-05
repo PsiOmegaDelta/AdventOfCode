@@ -9,8 +9,9 @@ namespace AdventOfCode2022.Test.Unit
         [TestMethod]
         public void PartOneShallReturnExpectedOutput()
         {
-            var input = File.ReadLines("Day01Demo.txt").GroupByNewlineSeparation(int.Parse);
             const int expected = 24000;
+
+            var input = File.ReadLines("Day01Demo.txt").GroupByNewlineSeparation(int.Parse);
             var actual = input.CalculatePartOne();
 
             Assert.AreEqual(expected, actual);
@@ -19,8 +20,9 @@ namespace AdventOfCode2022.Test.Unit
         [TestMethod]
         public void PartTwoShallReturnExpectedOutput()
         {
-            var input = File.ReadLines("Day01Demo.txt").GroupByNewlineSeparation(int.Parse);
             const int expected = 45000;
+
+            var input = File.ReadLines("Day01Demo.txt").GroupByNewlineSeparation(int.Parse);
             var actual = input.CalculatePartTwo();
 
             Assert.AreEqual(expected, actual);
