@@ -1,6 +1,4 @@
-﻿using AdventOfCode.Shared.Extensions;
-
-namespace AdventOfCode2015.Day13
+﻿namespace AdventOfCode2015.Day13
 {
     public static class PartTwo
     {
