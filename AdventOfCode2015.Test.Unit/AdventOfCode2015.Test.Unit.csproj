@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>AdventOfCode._2015.Test.Unit</RootNamespace>
     <Nullable>enable</Nullable>
 
@@ -28,6 +28,7 @@
     <ProjectReference Include="..\AdventOfCode2015.Day13\AdventOfCode2015.Day13.csproj" />
     <ProjectReference Include="..\AdventOfCode2015.Day14\AdventOfCode2015.Day14.csproj" />
     <ProjectReference Include="..\AdventOfCode2015.Day15\AdventOfCode2015.Day15.csproj" />
+    <ProjectReference Include="..\AdventOfCode2015.Day17\AdventOfCode2015.Day17.csproj" />
   </ItemGroup>
 
 </Project>
