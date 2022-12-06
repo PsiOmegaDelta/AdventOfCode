@@ -63,6 +63,11 @@ namespace AdventOfCode.Shared.Extensions
             }
         }
 
+        public static bool None<T>(this IEnumerable<T> source)
+        {
+            return !source.Any();
+        }
+
         public static long Product(this IEnumerable<int> source)
         {
             return source.Product(x => x);
