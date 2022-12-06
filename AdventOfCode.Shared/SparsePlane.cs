@@ -45,6 +45,30 @@ namespace AdventOfCode.Shared
             set => Add(x, y, value);
         }
 
+        public IEnumerable<(Coordinate2D Coordinate, T? Entry)> CardinalNeighbours(Coordinate2D coordinate)
+        {
+            yield return ((coordinate.X, coordinate.Y - 1), this[coordinate.X, coordinate.Y - 1]); // North
+            yield return ((coordinate.X - 1, coordinate.Y), this[coordinate.X - 1, coordinate.Y]); // West
+            yield return ((coordinate.X + 1, coordinate.Y), this[coordinate.X + 1, coordinate.Y]); // East
+            yield return ((coordinate.X, coordinate.Y + 1), this[coordinate.X, coordinate.Y + 1]); // South
+        }
+
+        public IEnumerable<(Coordinate2D Coordinate, T? Entry)> Neighbours(Coordinate2D coordinate)
+        {
+            for (var y = coordinate.Y - 1; y <= coordinate.Y + 1; y++)
+            {
+                for (var x = coordinate.X - 1; x <= coordinate.X + 1; x++)
+                {
+                    if (y == coordinate.Y && x == coordinate.X)
+                    {
+                        continue;
+                    }
+
+                    yield return ((x, y), this[x, y]);
+                }
+            }
+        }
+
         public override string ToString()
         {
             if (MaxX == null)
