@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace AdventOfCode2022.Day05
+﻿namespace AdventOfCode2022.Day05
 {
     public record RelocationOrder(int SourceStack, int TargetStack, int Amount);
 }

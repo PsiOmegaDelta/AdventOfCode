@@ -1,6 +1,5 @@
 ﻿using AdventOfCode.Shared;
 using System.Collections.Immutable;
-using System.Linq;
 
 namespace AdventOfCode2022.Day05
 {

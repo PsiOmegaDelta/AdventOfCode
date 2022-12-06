@@ -1,5 +1,4 @@
 ﻿using AdventOfCode.Shared.Extensions;
-using System.Runtime.CompilerServices;
 
 namespace AdventOfCode2022.Day06
 {

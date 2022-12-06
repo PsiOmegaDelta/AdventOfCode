@@ -1,5 +1,4 @@
 ﻿using AdventOfCode2015.Day18;
-using System.Collections.Immutable;
 
 const string inputPath = "Day18Input.txt";
 Console.WriteLine("2015 - Day 18");

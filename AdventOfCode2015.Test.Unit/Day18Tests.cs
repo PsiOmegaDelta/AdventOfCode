@@ -1,8 +1,6 @@
 using AdventOfCode2015.Day18;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Immutable;
 using System.IO;
-using System.Linq;
 
 namespace AdventOfCode2015.Test.Unit
 {

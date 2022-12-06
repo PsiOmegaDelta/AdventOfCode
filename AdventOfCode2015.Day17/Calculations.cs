@@ -1,5 +1,4 @@
-﻿using AdventOfCode.Shared;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 
 namespace AdventOfCode2015.Day17
 {
