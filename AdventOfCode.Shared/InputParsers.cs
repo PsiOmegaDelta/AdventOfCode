@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode.Shared
+﻿using AdventOfCode.Shared.Extensions;
+
+namespace AdventOfCode.Shared
 {
     public static class InputParsers
     {
@@ -37,6 +39,31 @@
             return input
                 .Select(x => x.Where(char.IsDigit).Select(x => (int)char.GetNumericValue(x)).ToArray())
                 .ToArray();
+        }
+
+        public static SparsePlane<TOut> ToSparsePlane<TOut>(
+            this IEnumerable<string> input,
+            Func<char, TOut> convert)
+        {
+            return input.ToSparsePlane(x => x.Select(y => y), convert);
+        }
+
+        public static SparsePlane<TOut> ToSparsePlane<TSplit, TOut>(
+            this IEnumerable<string> input,
+            Func<string, IEnumerable<TSplit>> splitMethod,
+            Func<TSplit, TOut> convert)
+        {
+            var plane = new SparsePlane<TOut>();
+            var enumeratedInput = input.ToList();
+            foreach (var (line, y) in input.Reverse().SelectIndex())
+            {
+                foreach (var (point, x) in splitMethod(enumeratedInput[y]).SelectIndex())
+                {
+                    plane[x, y] = convert(point);
+                }
+            }
+
+            return plane;
         }
     }
 }

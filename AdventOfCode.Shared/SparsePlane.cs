@@ -19,9 +19,9 @@ namespace AdventOfCode.Shared
 
         public T? DefaultWhenUnset { get; set; }
 
-        public IEnumerable<(Coordinate2D Coordinate, T? Entry)> Entries => YieldAllValues();
+        public IEnumerable<Point2D<T?>> Entries => YieldAllValues();
 
-        public IEnumerable<(Coordinate2D Coordinate, T? Entry)> ExplicitEntries => columnsByRow.SelectMany(x => x.Value.Select(y => (new Coordinate2D(x.Key, y.Key), y.Value)));
+        public IEnumerable<Point2D<T?>> ExplicitEntries => columnsByRow.SelectMany(x => x.Value.Select(y => new Point2D<T?>((x.Key, y.Key), y.Value)));
 
         public int? MaxX { get; private set; }
 
@@ -45,12 +45,49 @@ namespace AdventOfCode.Shared
             set => Add(x, y, value);
         }
 
-        public IEnumerable<(Coordinate2D Coordinate, T? Entry)> CardinalNeighbours(Coordinate2D coordinate)
+        public IEnumerable<Point2D<T?>> CardinalNeighbours(IEnumerable<Coordinate2D> coordinates)
+        {
+            return coordinates.SelectMany(x => CardinalNeighbours(x)).Distinct();
+        }
+
+        public IEnumerable<Point2D<T?>> CardinalNeighbours(Coordinate2D coordinate)
         {
             yield return ((coordinate.X, coordinate.Y - 1), this[coordinate.X, coordinate.Y - 1]); // North
             yield return ((coordinate.X - 1, coordinate.Y), this[coordinate.X - 1, coordinate.Y]); // West
             yield return ((coordinate.X + 1, coordinate.Y), this[coordinate.X + 1, coordinate.Y]); // East
             yield return ((coordinate.X, coordinate.Y + 1), this[coordinate.X, coordinate.Y + 1]); // South
+        }
+
+        public IEnumerable<Point2D<T?>> ExplicitCardinalNeighbours(Point2D<T> point)
+        {
+            return ExplicitCardinalNeighbours(point.Coordinate);
+        }
+
+        public IEnumerable<Point2D<T?>> ExplicitCardinalNeighbours(IEnumerable<Point2D<T>> points)
+        {
+            return points.SelectMany(x => ExplicitCardinalNeighbours(x.Coordinate)).Distinct();
+        }
+
+        public IEnumerable<Point2D<T?>> ExplicitCardinalNeighbours(IEnumerable<Coordinate2D> coordinates)
+        {
+            return coordinates.SelectMany(x => ExplicitCardinalNeighbours(x)).Distinct();
+        }
+
+        public IEnumerable<Point2D<T?>> ExplicitCardinalNeighbours(Coordinate2D coordinate)
+        {
+            for (int y = coordinate.Y - 1; y <= coordinate.Y + 1; y++)
+            {
+                for (int x = coordinate.X - 1; x <= coordinate.X + 1; x++)
+                {
+                    if ((x == coordinate.X || y == coordinate.Y) && !(x == coordinate.X && y == coordinate.Y))
+                    {
+                        if (columnsByRow.TryGetValue(x, out var columns) && columns.TryGetValue(y, out var coordinateEntry))
+                        {
+                            yield return ((x, y), coordinateEntry);
+                        }
+                    }
+                }
+            }
         }
 
         public IEnumerable<(Coordinate2D Coordinate, T? Entry)> Neighbours(Coordinate2D coordinate)
@@ -100,7 +137,7 @@ namespace AdventOfCode.Shared
             return columnsByRow.GetOrAdd(x, _ => new Dictionary<int, T?>())[y] = value;
         }
 
-        private IEnumerable<(Coordinate2D Coordinate, T? Entry)> YieldAllValues()
+        private IEnumerable<Point2D<T?>> YieldAllValues()
         {
             if (!MaxX.HasValue)
             {
@@ -111,7 +148,7 @@ namespace AdventOfCode.Shared
             {
                 for (int y = MinY!.Value; y <= MaxY; y++)
                 {
-                    yield return (new Coordinate2D(x, y), this[x, y]);
+                    yield return ((x, y), this[x, y]);
                 }
             }
         }

@@ -26,6 +26,7 @@
     <ProjectReference Include="..\AdventOfCode2022.Day05\AdventOfCode2022.Day05.csproj" />
     <ProjectReference Include="..\AdventOfCode2022.Day06\AdventOfCode2022.Day06.csproj" />
     <ProjectReference Include="..\AdventOfCode2022.Day07\AdventOfCode2022.Day07.csproj" />
+    <ProjectReference Include="..\AdventOfCode2022.Day08\AdventOfCode2022.Day08.csproj" />
   </ItemGroup>
 
 </Project>

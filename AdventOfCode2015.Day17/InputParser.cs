@@ -4,7 +4,7 @@
     {
         public static IEnumerable<int> ParseInput(this IEnumerable<string> inputs)
         {
-            return inputs.Select(x => int.Parse(x));
+            return inputs.Select(int.Parse);
         }
     }
 }
