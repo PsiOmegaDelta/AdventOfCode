@@ -6,8 +6,7 @@ namespace AdventOfCode2022.Day08
     {
         public static long CalculatePartOne(this SparsePlane<int?> trees)
         {
-            var visibleTrees = trees.Where(CanBeSeen).ToList();
-            return visibleTrees.LongCount();
+            return trees.LongCount(CanBeSeen);
 
             bool CanBeSeen(Point2D<int?> tree)
             {
@@ -73,7 +72,66 @@ namespace AdventOfCode2022.Day08
 
         public static long CalculatePartTwo(this SparsePlane<int?> trees)
         {
-            return 0;
+            return trees.Max(ScenicScore);
+
+            long ScenicScore(Point2D<int?> tree)
+            {
+                var scenicScore = 1;
+
+                var directionScore = 0;
+                for (var x = tree.Coordinate.X - 1; x >= trees.MinX - 1; x--)
+                {
+                    var neighbourHeight = trees[x, tree.Coordinate.Y];
+                    directionScore = neighbourHeight == null ? directionScore : directionScore + 1;
+
+                    if (neighbourHeight == null || neighbourHeight >= tree.Entry)
+                    {
+                        scenicScore *= directionScore;
+                        break;
+                    }
+                }
+
+                directionScore = 0;
+                for (var x = tree.Coordinate.X + 1; x <= trees.MaxX + 1; x++)
+                {
+                    var neighbourHeight = trees[x, tree.Coordinate.Y];
+                    directionScore = neighbourHeight == null ? directionScore : directionScore + 1;
+
+                    if (neighbourHeight == null || neighbourHeight >= tree.Entry)
+                    {
+                        scenicScore *= directionScore;
+                        break;
+                    }
+                }
+
+                directionScore = 0;
+                for (var y = tree.Coordinate.Y - 1; y >= trees.MinY - 1; y--)
+                {
+                    var neighbourHeight = trees[tree.Coordinate.X, y];
+                    directionScore = neighbourHeight == null ? directionScore : directionScore + 1;
+
+                    if (neighbourHeight == null || neighbourHeight >= tree.Entry)
+                    {
+                        scenicScore *= directionScore;
+                        break;
+                    }
+                }
+
+                directionScore = 0;
+                for (var y = tree.Coordinate.Y + 1; y <= trees.MaxY + 1; y++)
+                {
+                    var neighbourHeight = trees[tree.Coordinate.X, y];
+                    directionScore = neighbourHeight == null ? directionScore : directionScore + 1;
+
+                    if (neighbourHeight == null || neighbourHeight >= tree.Entry)
+                    {
+                        scenicScore *= directionScore;
+                        break;
+                    }
+                }
+
+                return scenicScore;
+            }
         }
     }
 }

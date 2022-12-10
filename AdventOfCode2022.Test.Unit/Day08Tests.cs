@@ -29,7 +29,7 @@ namespace AdventOfCode2022.Test.Unit
         [TestMethod]
         public void PartTwoShallReturnExpectedOutput()
         {
-            const int expected = 24933642;
+            const int expected = 8;
 
             var actual = File.ReadLines(TestInputPath).ToSparsePlane(x => (int?)char.GetNumericValue(x)).CalculatePartTwo();
 
