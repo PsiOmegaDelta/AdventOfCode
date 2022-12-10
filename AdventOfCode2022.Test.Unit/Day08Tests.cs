@@ -13,14 +13,14 @@ namespace AdventOfCode2022.Test.Unit
         {
             const int expected = 21;
 
-            var actual = File.ReadLines(TestInputPath).ToSparsePlane(x => (int)char.GetNumericValue(x)).CalculatePartOne();
+            var actual = File.ReadLines(TestInputPath).ToSparsePlane(x => (int?)char.GetNumericValue(x)).CalculatePartOne();
 
             Assert.AreEqual(expected, actual);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DynamicData(nameof(TestForests), DynamicDataSourceType.Method)]
-        public void PartOneShallReturnExpectedOutput(SparsePlane<int> trees, int expected)
+        public void PartOneShallReturnExpectedOutputForInputs(SparsePlane<int?> trees, int expected)
         {
             var actual = trees.CalculatePartOne();
             Assert.AreEqual(expected, actual);
@@ -31,7 +31,7 @@ namespace AdventOfCode2022.Test.Unit
         {
             const int expected = 24933642;
 
-            var actual = File.ReadLines(TestInputPath).ToSparsePlane(x => (int)char.GetNumericValue(x)).CalculatePartTwo();
+            var actual = File.ReadLines(TestInputPath).ToSparsePlane(x => (int?)char.GetNumericValue(x)).CalculatePartTwo();
 
             Assert.AreEqual(expected, actual);
         }
@@ -40,11 +40,50 @@ namespace AdventOfCode2022.Test.Unit
         {
             yield return TypeSafety(new[]
             {
+                "989",
+                "999",
+                "999"
+            }.ToSparsePlane(x => (int?)char.GetNumericValue(x)),
+            9);
+
+            yield return TypeSafety(new[]
+            {
+                "999",
+                "998",
+                "999"
+            }.ToSparsePlane(x => (int?)char.GetNumericValue(x)),
+            9);
+
+            yield return TypeSafety(new[]
+            {
+                "999",
+                "999",
+                "989"
+            }.ToSparsePlane(x => (int?)char.GetNumericValue(x)),
+            9);
+
+            yield return TypeSafety(new[]
+            {
+                "999",
+                "899",
+                "999"
+            }.ToSparsePlane(x => (int?)char.GetNumericValue(x)),
+            9);
+            yield return TypeSafety(new[]
+            {
+                "888",
+                "898",
+                "888"
+            }.ToSparsePlane(x => (int?)char.GetNumericValue(x)),
+            9);
+
+            yield return TypeSafety(new[]
+            {
                 "414",
                 "424",
                 "434",
                 "444"
-            }.ToSparsePlane(x => (int)char.GetNumericValue(x)),
+            }.ToSparsePlane(x => (int?)char.GetNumericValue(x)),
             12);
 
             yield return TypeSafety(new[]
@@ -68,7 +107,7 @@ namespace AdventOfCode2022.Test.Unit
                 "9999999992999999999",
                 "9999999991999999999",
                 "9999999990999999999"
-            }.ToSparsePlane(x => (int)char.GetNumericValue(x)),
+            }.ToSparsePlane(x => (int?)char.GetNumericValue(x)),
             19 + 19 + 17 + 17 + 17 + 16);
 
             yield return TypeSafety(new[]
@@ -76,10 +115,10 @@ namespace AdventOfCode2022.Test.Unit
                 "99199",
                 "93239",
                 "99999"
-            }.ToSparsePlane(x => (int)char.GetNumericValue(x)),
+            }.ToSparsePlane(x => (int?)char.GetNumericValue(x)),
             5 + 3 + 5);
 
-            static object[] TypeSafety(SparsePlane<int> trees, int expected)
+            static object[] TypeSafety(SparsePlane<int?> trees, int expected)
             {
                 return new object[] { trees, expected };
             }

@@ -1,9 +1,10 @@
 ﻿using AdventOfCode.Shared.Extensions;
+using System.Collections;
 using System.Text;
 
 namespace AdventOfCode.Shared
 {
-    public sealed class SparsePlane<T>
+    public sealed class SparsePlane<T> : IEnumerable<Point2D<T?>>
     {
         private readonly IDictionary<int, IDictionary<int, T?>> columnsByRow = new Dictionary<int, IDictionary<int, T?>>();
 
@@ -88,6 +89,16 @@ namespace AdventOfCode.Shared
                     }
                 }
             }
+        }
+
+        public IEnumerator<Point2D<T?>> GetEnumerator()
+        {
+            return Entries.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return Entries.GetEnumerator();
         }
 
         public IEnumerable<(Coordinate2D Coordinate, T? Entry)> Neighbours(Coordinate2D coordinate)

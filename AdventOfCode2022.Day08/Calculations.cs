@@ -1,39 +1,77 @@
 ﻿using AdventOfCode.Shared;
-using AdventOfCode.Shared.Extensions;
 
 namespace AdventOfCode2022.Day08
 {
     public static class Calculations
     {
-        public static long CalculatePartOneIncorrectly(this SparsePlane<int> trees)
+        public static long CalculatePartOne(this SparsePlane<int?> trees)
         {
-            var visibleTrees = trees.Entries
-                .Where(x => x.Coordinate.X == trees.MinX || x.Coordinate.X == trees.MaxX || x.Coordinate.Y == trees.MinY || x.Coordinate.Y == trees.MaxY)
-                .ToHashSet();
-            var checkedTrees = visibleTrees.ToHashSet();
-            var candidateTrees = trees.ExplicitCardinalNeighbours(checkedTrees).Except(checkedTrees).ToHashSet();
+            var visibleTrees = trees.Where(CanBeSeen).ToList();
+            return visibleTrees.LongCount();
 
-            while (candidateTrees.Count > 0)
+            bool CanBeSeen(Point2D<int?> tree)
             {
-                var newCandidates = new HashSet<Point2D<int>>();
-                foreach (var candidate in candidateTrees)
+                for (var x = tree.Coordinate.X - 1; x >= trees.MinX - 1; x--)
                 {
-                    checkedTrees.Add(candidate);
-                    var neighbours = trees.ExplicitCardinalNeighbours(candidate);
-                    if (visibleTrees.Intersect(neighbours).Any(x => x.Entry < candidate.Entry))
+                    var neighbourHeight = trees[x, tree.Coordinate.Y];
+                    if (neighbourHeight == null)
                     {
-                        visibleTrees.Add(candidate);
-                        newCandidates.AddRange(neighbours.Except(checkedTrees));
+                        return true;
+                    }
+
+                    if (neighbourHeight >= tree.Entry)
+                    {
+                        break;
                     }
                 }
 
-                candidateTrees = newCandidates;
-            }
+                for (var x = tree.Coordinate.X + 1; x <= trees.MaxX + 1; x++)
+                {
+                    var neighbourHeight = trees[x, tree.Coordinate.Y];
+                    if (neighbourHeight == null)
+                    {
+                        return true;
+                    }
 
-            return visibleTrees.Count;
+                    if (neighbourHeight >= tree.Entry)
+                    {
+                        break;
+                    }
+                }
+
+                for (var y = tree.Coordinate.Y - 1; y >= trees.MinY - 1; y--)
+                {
+                    var neighbourHeight = trees[tree.Coordinate.X, y];
+                    if (neighbourHeight == null)
+                    {
+                        return true;
+                    }
+
+                    if (neighbourHeight >= tree.Entry)
+                    {
+                        break;
+                    }
+                }
+
+                for (var y = tree.Coordinate.Y + 1; y <= trees.MaxY + 1; y++)
+                {
+                    var neighbourHeight = trees[tree.Coordinate.X, y];
+                    if (neighbourHeight == null)
+                    {
+                        return true;
+                    }
+
+                    if (neighbourHeight >= tree.Entry)
+                    {
+                        break;
+                    }
+                }
+
+                return false;
+            }
         }
 
-        public static long CalculatePartTwo(this SparsePlane<int> trees)
+        public static long CalculatePartTwo(this SparsePlane<int?> trees)
         {
             return 0;
         }
