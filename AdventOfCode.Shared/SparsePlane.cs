@@ -1,5 +1,6 @@
 ﻿using AdventOfCode.Shared.Extensions;
 using System.Collections;
+using System.ComponentModel;
 using System.Text;
 
 namespace AdventOfCode.Shared
@@ -137,6 +138,16 @@ namespace AdventOfCode.Shared
             }
 
             return stringBuilder.ToString();
+        }
+
+        public bool Unset(Coordinate2D coordinate)
+        {
+            return Unset(coordinate.X, coordinate.Y);
+        }
+
+        public bool Unset(int x, int y)
+        {
+            return columnsByRow.TryGetValue(x, out var columns) && columns.Remove(y);
         }
 
         private T? Add(int x, int y, T? value)
