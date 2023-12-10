@@ -64,8 +64,8 @@
 
                     foreach (var neighbour in maze.GetNeighbours(current, true))
                     {
-                        long newCost = costs.GetOrDefault(current, _ => int.MaxValue) + getCost(maze[neighbour.X][neighbour.Y]);
-                        long neighborCost = costs.GetOrDefault(neighbour, _ => int.MaxValue);
+                        long newCost = costs.GetValueOrDefault(current, _ => int.MaxValue) + getCost(maze[neighbour.X][neighbour.Y]);
+                        long neighborCost = costs.GetValueOrDefault(neighbour, _ => int.MaxValue);
 
                         if (newCost < neighborCost)
                         {

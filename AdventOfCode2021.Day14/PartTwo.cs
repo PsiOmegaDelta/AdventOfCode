@@ -14,7 +14,7 @@ namespace AdventOfCode2021.Day14
             for (int i = 0; i < input.Template.Length - 1; i++)
             {
                 var pair = input.Template.Substring(i, 2);
-                var amount = pairCount.GetOrDefault(pair, _ => 0) + 1;
+                var amount = pairCount.GetValueOrDefault(pair, _ => 0) + 1;
                 pairCount = pairCount.SetItem(pair, amount);
             }
 
@@ -26,11 +26,11 @@ namespace AdventOfCode2021.Day14
                     pairCount = pairCount.SetItem(pair, reducedAmount);
 
                     var newChar = input.Inserts[pair];
-                    characterCount[newChar] = characterCount.GetOrDefault(newChar, _ => 0) + amount;
+                    characterCount[newChar] = characterCount.GetValueOrDefault(newChar, _ => 0) + amount;
 
                     foreach (var newPair in new string[] { new string(new char[] { pair[0], newChar }), new string(new char[] { newChar, pair[1] }) })
                     {
-                        var increasedAmount = pairCount.GetOrDefault(newPair, _ => 0) + amount;
+                        var increasedAmount = pairCount.GetValueOrDefault(newPair, _ => 0) + amount;
                         pairCount = pairCount.SetItem(newPair, increasedAmount);
                     }
                 }

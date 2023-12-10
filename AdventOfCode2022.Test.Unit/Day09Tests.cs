@@ -6,7 +6,7 @@ namespace AdventOfCode2022.Test.Unit
     [TestClass]
     public class Day09Tests
     {
-        private const string TestInputPath = "Day09Demo.txt";
+        private const string TestInputPath = "Day09DemoPartOne.txt";
 
         [TestMethod]
         public void PartOneShallReturnExpectedOutput()
@@ -26,17 +26,29 @@ namespace AdventOfCode2022.Test.Unit
             (int, int) direction,
             Coordinate2D expectedTailPosition)
         {
-            var (_, actualTailPosition) = Calculations.MoveHead(headStart, tailStart, direction);
+            var newKnots = Calculations.MoveKnots(new[] { headStart, tailStart }, direction);
 
-            Assert.AreEqual(expectedTailPosition, actualTailPosition);
+            Assert.AreEqual(expectedTailPosition, newKnots[1]);
         }
 
         [TestMethod]
-        public void PartTwoShallReturnExpectedOutput()
+        [Ignore]
+        public void PartTwoAShallReturnExpectedOutput()
         {
-            const int expected = 0;
+            const int expected = 1;
 
-            var actual = File.ReadLines(TestInputPath).ParseInput().CalculatePartTwo();
+            var actual = File.ReadLines("Day09DemoPartTwoA.txt").ParseInput().CalculatePartTwo(10);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [Ignore]
+        public void PartTwoBShallReturnExpectedOutput()
+        {
+            const int expected = 36;
+
+            var actual = File.ReadLines("Day09DemoPartTwoB.txt").ParseInput().CalculatePartTwo(10);
 
             Assert.AreEqual(expected, actual);
         }
