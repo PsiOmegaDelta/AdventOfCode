@@ -1,6 +1,5 @@
 ﻿using AdventOfCode.Shared.Extensions;
 using System.Collections;
-using System.ComponentModel;
 using System.Text;
 
 namespace AdventOfCode.Shared
@@ -92,6 +91,25 @@ namespace AdventOfCode.Shared
             }
         }
 
+        public IEnumerable<(Coordinate2D Coordinate, T? Entry)> ExplicitNeighbours(Coordinate2D coordinate)
+        {
+            for (var y = coordinate.Y - 1; y <= coordinate.Y + 1; y++)
+            {
+                for (var x = coordinate.X - 1; x <= coordinate.X + 1; x++)
+                {
+                    if (y == coordinate.Y && x == coordinate.X)
+                    {
+                        continue;
+                    }
+
+                    if (columnsByRow.TryGetValue(x, out var columns) && columns.TryGetValue(y, out var coordinateEntry))
+                    {
+                        yield return ((x, y), coordinateEntry);
+                    }
+                }
+            }
+        }
+
         public IEnumerator<Point2D<T?>> GetEnumerator()
         {
             return Entries.GetEnumerator();
@@ -100,6 +118,16 @@ namespace AdventOfCode.Shared
         IEnumerator IEnumerable.GetEnumerator()
         {
             return Entries.GetEnumerator();
+        }
+
+        public bool HasExplictValue(Coordinate2D key)
+        {
+            return HasExplictValue(key.X, key.Y);
+        }
+
+        public bool HasExplictValue(int x, int y)
+        {
+            return columnsByRow.TryGetValue(x, out var columns) && columns.ContainsKey(y);
         }
 
         public IEnumerable<(Coordinate2D Coordinate, T? Entry)> Neighbours(Coordinate2D coordinate)
