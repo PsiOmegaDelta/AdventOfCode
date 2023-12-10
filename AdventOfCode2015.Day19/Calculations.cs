@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AdventOfCode2015.Day19
+﻿namespace AdventOfCode2015.Day19
 {
     public static class Calculations
     {

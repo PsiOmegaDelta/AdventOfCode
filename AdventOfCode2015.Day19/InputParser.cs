@@ -1,8 +1,4 @@
-﻿using AdventOfCode.Shared;
-using AdventOfCode.Shared.Extensions;
-using System.Collections.Generic;
-
-namespace AdventOfCode2015.Day19
+﻿namespace AdventOfCode2015.Day19
 {
     public static class InputParser
     {

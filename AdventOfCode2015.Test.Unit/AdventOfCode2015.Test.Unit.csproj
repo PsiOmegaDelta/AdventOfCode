@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>AdventOfCode._2015.Test.Unit</RootNamespace>
+    <RootNamespace>AdventOfCode2015.Test.Unit</RootNamespace>
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>

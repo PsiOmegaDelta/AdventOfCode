@@ -1,6 +1,6 @@
 using AdventOfCode2023.Day02;
 
-namespace AdventOfCode2022.Test.Unit
+namespace AdventOfCode2023.Test.Unit
 {
     [TestClass]
     public class Day02Tests
